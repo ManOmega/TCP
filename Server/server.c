@@ -53,7 +53,7 @@ s4 main(void)
     };
 	
     struct packet pkt;
-	
+	printf("[+] Init socket \n");
 	if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1) 
 	{
 		perror("socket");
@@ -74,13 +74,13 @@ s4 main(void)
 	my_addr.sin_addr.s_addr = INADDR_ANY; 
 	/* zero the rest of the struct */
 	bzero(&(my_addr.sin_zero), 8); 
-
+	printf("[+] bind socket \n");
 	if (bind(sockfd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr)) == -1) 
 	{
 		perror("bind");
 		exit(1);
 	}
-
+	printf("[+] Listening \n");
 	if (listen(sockfd, BACKLOG) == -1) 
 	{
 		perror("listen");
